@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    command: uvicorn main:app --host 127.0.0.1 --port 8000 --reload
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+  
+    depends_on:
+      - db
+
+  db:
+  
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 567234
+      POSTGRES_DB: restapp_hw13
+    ports:
+      - "5432:5432"
+    volumes:
+      - .:/app
+
+
