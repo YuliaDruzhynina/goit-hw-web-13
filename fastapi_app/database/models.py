@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, String, Date, ForeignKey, Boolean
+from sqlalchemy import Boolean, Column, Date, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
-from fastapi_app.database.db import Base, engine
+
+from fastapi_project.fastapi_app.database.db import Base, engine
 
 
 class Contact(Base):
@@ -9,9 +10,10 @@ class Contact(Base):
     fullname = Column(String(150))
     phone_number = Column(String(20))
     email = Column(String(150), unique=True, index=True)
-    birthday = Column(Date) 
-    user_id = Column(Integer, ForeignKey('users.id'))
+    birthday = Column(Date)
+    user_id = Column(Integer, ForeignKey("users.id"))
     user = relationship("User", back_populates="contacts")
+
 
 class User(Base):
     __tablename__ = "users"
@@ -21,5 +23,6 @@ class User(Base):
     refresh_token = Column(String(255), nullable=True)
     contacts = relationship("Contact", back_populates="user")
     confirmed = Column(Boolean, default=False)
+
 
 Base.metadata.create_all(bind=engine)

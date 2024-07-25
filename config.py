@@ -1,5 +1,6 @@
-from pathlib import Path
 import os
+from pathlib import Path
+
 
 class Config:
 
@@ -21,9 +22,11 @@ class Config:
     SECRET_KEY: str = os.getenv('SECRET_KEY')
     ALGORITHM: str = os.getenv('ALGORITHM')
 
-    HOST: str = os.getenv('HOST', '127.0.0.1')
+    # HOST: str = os.getenv('HOST', '127.0.0.1')
+    # PORT: int = int(os.getenv('PORT', 8000))
+
+    HOST: str = os.getenv('HOST', '0.0.0.0')
     PORT: int = int(os.getenv('PORT', 8000))
 
-    # HOST: str = os.getenv('HOST', '0.0.0.0')
-    # PORT: int = int(os.getenv('PORT', 8000))
+    
 config = Config()

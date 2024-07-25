@@ -1,11 +1,15 @@
 #uvicorn main:app --host 127.0.0.1 --port 8000 --reload
-from fastapi import FastAPI
+import sys 
+import os
 from dotenv import load_dotenv
+from fastapi import FastAPI
 
-from routes.contact_router import router as contact_router
-from routes.auth_router import router as user_router
-from routes.mail_router import router as mail_router
-from config import config
+from fastapi_project.config import config
+from fastapi_project.fastapi_app.routes.auth_router import router as user_router
+from fastapi_project.fastapi_app.routes.contact_router import router as contact_router
+from fastapi_project.fastapi_app.routes.email_router import router as mail_router
+    
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 load_dotenv()
 

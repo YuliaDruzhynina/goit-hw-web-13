@@ -34,6 +34,7 @@ fastapi==0.111.1
     # via -r requirements.in
 fastapi-cli==0.0.4
     # via fastapi
+fastapi-mail==1.4.1    
 greenlet==3.0.3
     # via sqlalchemy
 h11==0.14.0

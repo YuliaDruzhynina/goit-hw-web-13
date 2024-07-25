@@ -1,9 +1,9 @@
 #from typing import List
-from pydantic import BaseModel, EmailStr
+import datetime
 from typing import Optional
 
+from pydantic import BaseModel, EmailStr
 
-import datetime
 
 class ContactSchema(BaseModel):
     fullname: str
@@ -32,12 +32,31 @@ class UserModel(BaseModel):
     class Config:
         from_attributes = True  
 
+class UserDb(BaseModel):
+    id: int
+    username: str
+    email: str
+    created_at: datetime
+    avatar: str
+
+    class Config:
+        orm_mode = True        
+
+class UserResponse(BaseModel):
+    user: UserDb
+    detail: str = "User successfully created"        
+    
+
 class RequestEmail(BaseModel):
     email: EmailStr
 
 class EmailSchema(BaseModel):
     email: EmailStr
 
+class TokenModel(BaseModel):
+    access_token: str
+    refresh_token: str
+    token_type: str = "bearer"
 
 
 # class ContactUpdate(BaseModel):

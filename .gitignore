@@ -1,3 +1,4 @@
-__pycache__
-sql_app.sqlite
+**/__pycache__
+.idea
 .env
+sql_app.sqlite
